@@ -1,10 +1,6 @@
 #ifndef ISUBJECT_H
 #define ISUBJECT_H
 
-#include <string>
-#include "Item.h"
-#include "IObserver.h"
-
 class ISubject {
 public:
     virtual ~ISubject() = default;

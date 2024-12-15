@@ -5,13 +5,13 @@
 #ifndef IOBSERVER_H
 #define IOBSERVER_H
 
-#include <string>
 #include <vector>
 #include "Item.h"
 
 class IObserver {
     public:
         virtual ~IObserver() = default;
-        virtual void update(const std::string listName, const std::string& operation, const Item& item, const std::vector<Item>& items) = 0;
+
+        virtual void update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) = 0;
 };
 #endif //IOBSERVER_H

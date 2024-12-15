@@ -7,22 +7,22 @@
 
 #include <map>
 #include <memory>
-#include <string>
 #include "IObserver.h"
-#include "ShoppingList.h"
 
-
-class User : public IObserver{
-    private:
+class User : public IObserver {
+private:
         std::string username;
         std::map<std::string, std::shared_ptr<ShoppingList>> lists;
-    public:
-        User(const std::string &username);
-        void createList(const std::string &listName);
-        void shareListWith(std::string &listName, User &otherUser);
-        void revokeListFrom(std::string &listName, User &otherUser);
-};
 
+public:
+        explicit User(const std::string& username);
+        void update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) override;
+        void createList(const std::string& listName);
+        void shareListWith(const std::string& listName, User& otherUser);
+        void revokeListAccess(const std::string& listName, const std::string& otherUsername);
+        void addItemToList(const std::string& listName, const Item& item);
+        void updateItemInList(const std::string& listName, const Item& item);
+};
 
 
 #endif //USER_H
