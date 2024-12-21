@@ -1,7 +1,8 @@
-#include <iostream>
 
-int main()
+#include "Google_tests/lib/googletest-1.15.2/googletest/include/gtest/gtest.h"
+
+int main(int argc, char **argv)
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

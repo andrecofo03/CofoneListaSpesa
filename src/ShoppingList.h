@@ -8,9 +8,11 @@
 #include <set>
 #include "IObserver.h"
 #include "ISubject.h"
+#include <vector>
+#include <string>
+#include "Item.h"
 
 class ShoppingList : public ISubject {
-private:
     std::string name;
     std::string owner;
     std::vector<Item> items;

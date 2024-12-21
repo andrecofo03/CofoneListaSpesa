@@ -19,8 +19,9 @@ void ShoppingList::addItem(const std::string& username, const Item& item) {
         return;
     }
 
-    auto it = std::find_if(items.begin(), items.end(),
-                           [&item](const Item& i) { return i.name == item.name; });
+    auto it = std::find_if(items.begin(), items.end(),[&item](const Item& i) {
+        return i.name == item.name;
+    });
 
     if (it != items.end()) {
         std::cout << "L'elemento \"" << item.name << "\" è già presente nella lista \"" << name << "\" con quantità " << it->quantity << ".\n";
@@ -127,10 +128,14 @@ void ShoppingList::shareWith(const std::string& username) {
 
 // Revoca l'accesso a un utente
 void ShoppingList::revokeAccess(const std::string& username) {
+    if (username == owner) {
+        std::cout << "Richiesta rifiutata: non puoi revocare l'accesso al proprietario della lista." << std::endl;
+        return;
+    }
     if (sharedUsers.erase(username)) {
-        std::cout << "Accesso revocato a " << username << " per la lista \"" << name << "\".\n";
+        std::cout << "Accesso revocato a " << username << " per la lista \"" << name << "\"." << std::endl;
     } else {
-        std::cout << username << " non ha accesso alla lista \"" << name << "\".\n";
+        std::cout << username << " non ha accesso alla lista \"" << name << "\"." << std::endl;
     }
 }
 
@@ -146,12 +151,21 @@ bool ShoppingList::canModify(const std::string& username) const {
 
 // Stampa gli elementi nella lista
 void ShoppingList::printList() const {
-    std::cout << "Lista \"" << name << "\" aggiornata:\n";
-    for (const auto& item : items) {
-        item.print();
+    std::cout << "Lista \"" << name << "\" aggiornata:" << std::endl;
+    std::cout << "Proprietario: " << owner << std::endl;
+    if (!sharedUsers.empty()) {
+        std::cout << "Condivisa con:" << std::endl;
+        for (const auto& user : sharedUsers) {
+            std::cout << "Lista \"" << user << "\" aggiornata:" << std::endl;
+        }
     }
+
     if (items.empty()) {
-        std::cout << "La lista è vuota.\n";
+        std::cout << "La lista è vuota." << std::endl;
+    } else {
+        for (const auto& item : items) {
+            item.print();
+        }
     }
     std::cout << std::endl;
 }

@@ -6,7 +6,7 @@
 
 class Item {
     friend class ShoppingList;
-private:
+
     std::string name;
     std::string category;
     int quantity;

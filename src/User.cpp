@@ -9,7 +9,7 @@
 User::User(const std::string& username) : username(username) {}
 
 //chiamato quando un observer riceve una notifica
-void User::update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) override{
+void User::update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) {
     std::cout << "Utente " << username << " - Lista aggiornata: " << listName << std::endl;
     std::cout << "Operazione: " << operation << " - ";
     item.print();
@@ -38,20 +38,23 @@ void User::shareListWith(const std::string& listName, User& otherUser) {
 }
 
 // Revoca l'accesso a un utente ad una lista
-void User::revokeListAccess(const std::string& listName, const std::string& otherUsername) {
+void User::revokeListAccess(const std::string& listName, User& otherUser) {
     if (lists.find(listName) != lists.end()) {
-        lists[listName]->revokeAccess(otherUsername);
+        lists[listName]->revokeAccess(otherUser.username);
+        otherUser.lists.erase(listName);
+        std::cout << "Accesso alla lista \"" << listName << "\" revocato a " << otherUser.username << ".\n";
     } else {
-        std::cout << "La lista " << listName << " non esiste!" << std::endl;
+        std::cout << "La lista \"" << listName << "\" non esiste o non è gestita da te.\n";
     }
 }
+
 
 // Aggiunge un elemento alla lista
 void User::addItemToList(const std::string& listName, const Item& item) {
     if (lists.find(listName) != lists.end()) {
         lists[listName]->addItem(username, item);
     } else {
-        std::cout << "La lista " << listName << " non esiste o non hai i permessi.\n";
+        std::cout << "La lista " << listName << "non esiste o non hai i permessi.\n";
     }
 }
 
