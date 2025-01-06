@@ -49,22 +49,6 @@ void User::revokeListAccess(const std::string& listName, User& otherUser) {
 }
 
 
-// Aggiunge un elemento alla lista
-void User::addItemToList(const std::string& listName, const Item& item) {
-    if (lists.find(listName) != lists.end()) {
-        lists[listName]->addItem(username, item);
-    } else {
-        std::cout << "La lista " << listName << "non esiste o non hai i permessi.\n";
-    }
-}
 
-// Aggiorna un elemento in una lista
-void User::updateItemInList(const std::string& listName, const Item& item) {
-    if (lists.find(listName) != lists.end()) {
-        lists[listName]->updateItem(username, item);
-    } else {
-        std::cout << "La lista " << listName << " non esiste o non hai i permessi.\n";
-    }
-}
 
 

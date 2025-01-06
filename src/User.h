@@ -19,8 +19,6 @@ public:
         void createList(const std::string& listName);
         void shareListWith(const std::string& listName, User& otherUser);
         void revokeListAccess(const std::string& listName, User& otherUser);
-        void addItemToList(const std::string& listName, const Item& item);
-        void updateItemInList(const std::string& listName, const Item& item);
 };
 
 

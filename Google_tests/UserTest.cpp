@@ -1,6 +1,8 @@
+#include <iostream>
 #include <gtest/gtest.h>
 #include "../src/User.h"
 #include <sstream>
+
 
 class UserTest : public ::testing::Test {
 protected:
