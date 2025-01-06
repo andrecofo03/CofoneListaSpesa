@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include <sstream>
 #include "../src/User.h"
-#include "../src/ShoppingList.h"
-#include "../src/Item.h"
 
 
 class ShoppingListTest : public ::testing::Test {
@@ -28,10 +26,10 @@ TEST_F(ShoppingListTest, AggiuntaElemento) {
 
 
 TEST_F(ShoppingListTest, AccessoNegato) {
-    ShoppingList list("Test", "Alice");
+    ShoppingList list("Test", "Pippo");
     Item item("Mele", "Frutta", 3);
 
-    list.addItem("Bob", item);
+    list.addItem("Pluto", item);
     EXPECT_TRUE(output.str().find("Accesso negato") != std::string::npos);
 }
 

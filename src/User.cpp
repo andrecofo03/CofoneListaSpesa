@@ -9,7 +9,7 @@
 User::User(const std::string& username) : username(username) {}
 
 //chiamato quando un observer riceve una notifica
-void User::update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) {
+void User::update(const std::string& listName, const std::string& operation, const Item& item) {
     std::cout << "Utente " << username << " - Lista aggiornata: " << listName << std::endl;
     std::cout << "Operazione: " << operation << " - ";
     item.print();

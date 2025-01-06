@@ -28,8 +28,7 @@ TEST_F(UserTest, CreazioneListaDuplicata) {
 
 TEST_F(UserTest, CondivisoneLista) {
     User user1("Pippo");
-    User user2
-    ("Pluto");
+    User user2("Pluto");
 
     user1.createList("Spesa");
     user1.shareListWith("Spesa", user2);

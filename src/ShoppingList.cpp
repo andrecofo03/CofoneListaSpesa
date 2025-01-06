@@ -116,7 +116,7 @@ void ShoppingList::removeObserver(IObserver* observer) {
 // Notifica gli observer delle modifiche
 void ShoppingList::notifyObservers(const std::string& operation, const Item& item) {
     for (auto observer : observers) {
-        observer->update(name, operation, item, items);
+        observer->update(name, operation, item);
     }
 }
 

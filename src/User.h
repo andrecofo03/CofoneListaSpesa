@@ -15,7 +15,7 @@ class User final : public IObserver {
         std::map<std::string, std::shared_ptr<ShoppingList>> lists;
 public:
         explicit User(const std::string& username);
-        void update(const std::string& listName, const std::string& operation, const Item& item, const std::vector<Item>& items) override;
+        void update(const std::string& listName, const std::string& operation, const Item& item) override;
         void createList(const std::string& listName);
         void shareListWith(const std::string& listName, User& otherUser);
         void revokeListAccess(const std::string& listName, User& otherUser);
