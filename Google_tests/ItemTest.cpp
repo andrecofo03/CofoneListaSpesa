@@ -3,7 +3,6 @@
 #include <sstream>
 #include <gtest/gtest_pred_impl.h>
 
-
 class ItemTest : public ::testing::Test {
 protected:
     void SetUp() override {
