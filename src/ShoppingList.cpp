@@ -59,19 +59,6 @@ void ShoppingList::updateItem(const std::string& username, const Item& item) {
         }
     } else {
         std::cout << "L'elemento \"" << item.getName() << "\" non esiste nella lista \"" << name << "\".\n";
-        std::cout << "Vuoi aggiungerlo? (s/n): ";
-        char choice;
-        std::cin >> choice;
-        if (choice == 's' || choice == 'S') {
-            if (item.getQuantity() > 0) {
-                items.push_back(item);
-                notifyObservers("Added", item);
-            } else {
-                std::cout << "Errore: la quantità di un nuovo elemento deve essere almeno 1.\n";
-            }
-        } else {
-            std::cout << "Operazione annullata.\n";
-        }
     }
     printList();
 }
