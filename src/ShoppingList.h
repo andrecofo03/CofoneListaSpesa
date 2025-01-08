@@ -40,7 +40,6 @@ public:
     void searchByCategory(const std::string& category) const;
     void searchMissingItems() const;
     void buyItem(const std::string& username, const std::string& itemName, int quantity);
-    void purchaseItemNotInList(const std::string& username, const Item& item);
     void showRemainingQuantities() const;
 
     void printList() const;
