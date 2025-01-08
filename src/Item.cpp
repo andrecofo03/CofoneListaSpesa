@@ -22,10 +22,6 @@ void Item::print() const {
 }
 
 
-void Item::setBought(bool bought) {
-    this->bought = bought;
-}
-
 bool Item::isBought() const {
     return bought;
 }

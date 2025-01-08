@@ -19,7 +19,6 @@ void ShoppingList::addItem(const std::string& username, const Item& item) {
             throw std::runtime_error("Accesso negato");
         }
 
-
     auto it = std::find_if(items.begin(), items.end(),[&item](const Item& i) {
         return i.name == item.name;
     });
@@ -208,7 +207,7 @@ void ShoppingList::buyItem(const std::string& username, const std::string& itemN
     }
 }
 
-// Show remaining quantities for all items
+
 void ShoppingList::showRemainingQuantities() const {
     std::cout << "Quantita' di ogni elemento nella lista \"" << name << "\":" << std::endl;
     for (const auto& item : items) {

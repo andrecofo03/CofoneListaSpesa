@@ -17,9 +17,7 @@ public:
     void print() const;
 
     int getQuantity() const;
-    void setQuantity(int quantity);
     int getBought() const;
-    void setBought(bool bought);
     bool isBought() const;
 
 
