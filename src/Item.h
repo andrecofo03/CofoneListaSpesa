@@ -10,9 +10,19 @@ class Item {
     std::string name;
     std::string category;
     int quantity;
+    bool bought;
+
 public:
-    Item(const std::string &name, const std::string &category, int quantity);
+    Item(const std::string &name, const std::string &category, int quantity, bool bought);
     void print() const;
+
+    int getQuantity() const;
+    void setQuantity(int quantity);
+    int getBought() const;
+    void setBought(bool bought);
+    bool isBought() const;
+
+
 };
 
 

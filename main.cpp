@@ -1,4 +1,3 @@
-
 #include "Google_tests/lib/googletest-1.15.2/googletest/include/gtest/gtest.h"
 
 int main(int argc, char **argv)

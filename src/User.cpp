@@ -54,7 +54,16 @@ void User::addItemToList(const std::string& listName, const Item& item) {
     if (lists.find(listName) != lists.end()) {
         lists[listName]->addItem(username, item);
     } else {
-        std::cout << "La lista " << listName << "non esiste o non hai i permessi.\n";
+        std::cout << "La lista " << listName << " non esiste o non hai i permessi.\n";
+    }
+}
+
+// Rimuove un elemento dalla lista
+void User::removeItemFromList(const std::string& listName, const std::string& itemName) {
+    if (lists.find(listName) != lists.end()) {
+        lists[listName]->removeItem(username, itemName);
+    } else {
+        std::cout << "La lista " << listName << " non esiste o non hai i permessi.\n";
     }
 }
 
@@ -67,4 +76,7 @@ void User::updateItemInList(const std::string& listName, const Item& item) {
     }
 }
 
+std::string User::getUsername() {
+    return username;
+}
 

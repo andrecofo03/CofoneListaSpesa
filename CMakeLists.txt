@@ -4,7 +4,6 @@ project(CofoneListaSpesa)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(CofoneListaSpesa main.cpp
-        Google_tests/ShoppingListTest.cpp
         src/User.h
         src/ShoppingList.cpp
         src/User.cpp

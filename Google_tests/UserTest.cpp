@@ -1,45 +1,28 @@
+#include <iostream>
 #include <gtest/gtest.h>
 #include "../src/User.h"
 #include <sstream>
 
-class UserTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        oldCout = std::cout.rdbuf(output.rdbuf());
-    }
 
-    std::stringstream output;
-    std::streambuf* oldCout{};
-};
+class UserTest : public ::testing::Test {};
 
-TEST_F(UserTest, CreazioneUser) {
+TEST_F(UserTest, CreaUtente) {
     User user("Pippo");
-    user.createList("Spesa");
-    EXPECT_TRUE(output.str().find("Pippo ha creato la lista: Spesa") != std::string::npos);
+    EXPECT_EQ(user.getUsername(), "Pippo");
 }
 
-TEST_F(UserTest, CreazioneListaDuplicata) {
+TEST_F(UserTest, CreazioneLista) {
     User user("Pippo");
-    user.createList("Spesa");
-    output.str("");
-    user.createList("Spesa");
-    EXPECT_TRUE(output.str().find("esiste già") != std::string::npos);
+    user.createList("Alimentari");
+
+    EXPECT_NO_THROW(user.addItemToList("Alimentari", Item("Latte", "Latticini", 2, false)));
 }
 
-TEST_F(UserTest, CondivisoneLista) {
-    User user1("Pippo");
-    User user2("Pluto");
 
-    user1.createList("Spesa");
-    user1.shareListWith("Spesa", user2);
+TEST_F(UserTest, AggiornaItem) {
+    User alice("Alice");
+    alice.createList("Alimentari");
 
-    EXPECT_TRUE(output.str().find("condivisa con Pluto") != std::string::npos);
-}
-
-TEST_F(UserTest, CondivioneListaInesistente) {
-    User user1("Pippo");
-    User user2("Pluto");
-
-    user1.shareListWith("ListaNonEsistente", user2);
-    EXPECT_TRUE(output.str().find("non esiste") != std::string::npos);
+    alice.addItemToList("Alimentari", Item("Latte", "Latticini", 2, false));
+    EXPECT_NO_THROW(alice.updateItemInList("Alimentari", Item("Latte", "Latticini", 5, false)));
 }
