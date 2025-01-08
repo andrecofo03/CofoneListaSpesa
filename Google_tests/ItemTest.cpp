@@ -18,5 +18,6 @@ TEST_F(ItemTest, ImpostaStatoAcquisto) {
     EXPECT_FALSE(item.isBought());
 
     item.setBought(true);
+
     EXPECT_TRUE(item.isBought());
 }

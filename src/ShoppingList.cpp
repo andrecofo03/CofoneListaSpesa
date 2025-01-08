@@ -20,15 +20,16 @@ void ShoppingList::addItem(const std::string& username, const Item& item) {
         }
 
     auto it = std::find_if(items.begin(), items.end(),[&item](const Item& i) {
-        return i.name == item.name;
+        return i.getName() == item.getName();
     });
 
     if (it != items.end()) {
-        std::cout << "L'elemento \"" << item.name << "\" è già presente nella lista \"" << name << "\" con quantità " << it->quantity << ".\n";
-        std::cout << "Aggiorno la quantità di \"" << item.name << "\" a " << it->quantity + item.quantity << ".\n";
-        it->quantity += item.quantity;
-            if (it->quantity <= 0) {
-                removeItem(username, it->name);
+        std::cout << "L'elemento \"" << item.getName() << "\" è già presente nella lista \"" << name << "\" con quantità " << it->getQuantity() << ".\n";
+        std::cout << "Aggiorno la quantità di \"" << item.getName() << "\" a " << it->getQuantity() + item.getQuantity() << ".\n";
+        int itp=it->getQuantity();
+        itp += item.getQuantity();
+            if (itp <= 0) {
+                removeItem(username, it->getName());
             } else {
                 notifyObservers("Updated", *it);
             }
@@ -47,22 +48,22 @@ void ShoppingList::updateItem(const std::string& username, const Item& item) {
     }
 
     auto it = std::find_if(items.begin(), items.end(),
-                           [&item](const Item& i) { return i.name == item.name; });
+                           [&item](const Item& i) { return i.getName() == item.getName(); });
 
     if (it != items.end()) {
-        it->quantity = item.quantity;
-        if (it->quantity <= 0) {
-            removeItem(username, it->name);
+        int itp = item.getQuantity();
+        if (itp <= 0) {
+            removeItem(username, it->getName());
         } else {
             notifyObservers("Updated", *it);
         }
     } else {
-        std::cout << "L'elemento \"" << item.name << "\" non esiste nella lista \"" << name << "\".\n";
+        std::cout << "L'elemento \"" << item.getName() << "\" non esiste nella lista \"" << name << "\".\n";
         std::cout << "Vuoi aggiungerlo? (s/n): ";
         char choice;
         std::cin >> choice;
         if (choice == 's' || choice == 'S') {
-            if (item.quantity > 0) {
+            if (item.getQuantity() > 0) {
                 items.push_back(item);
                 notifyObservers("Added", item);
             } else {
@@ -83,7 +84,7 @@ void ShoppingList::removeItem(const std::string& username, const std::string& it
     }
 
     auto it = std::find_if(items.begin(), items.end(),
-                           [&itemName](const Item& item) { return item.name == itemName; });
+                           [&itemName](const Item& item) { return item.getName() == itemName; });
 
     if (it != items.end()) {
         Item removed = *it;
@@ -160,7 +161,7 @@ void ShoppingList::printList() const {
 void ShoppingList::searchByCategory(const std::string& category) const {
     std::cout << "Elementi della categoria \"" << category << "\":" << std::endl;
     for (const auto& item : items) {
-        if (item.category == category) {
+        if (item.getCategory() == category) {
             item.print();
         }
     }
@@ -182,18 +183,19 @@ void ShoppingList::buyItem(const std::string& username, const std::string& itemN
     }
 
     auto it = std::find_if(items.begin(), items.end(), [&itemName](const Item& item) {
-        return item.name == itemName;
+        return item.getName() == itemName;
     });
 
     if (it != items.end()) {
         if (quantity <= 0) {
             std::cout << "Errore: la quantita' di acquisto deve essere almeno 1.\n";
-        } else if (quantity > it->quantity) {
+        } else if (quantity > it->getQuantity()) {
             std::cout << "Errore: non puoi acquistare piu' della quantita' che hai inserito nella lista \n";
         } else {
-            it->quantity -= quantity;
-            std::cout << "Acquistati " << quantity << " su \"" << itemName << "\"." << it->quantity <<" Rimanenti "<< std::endl;
-            if (it->quantity == 0) {
+            int itp=it->getQuantity();
+            itp -= quantity;
+            std::cout << "Acquistati " << quantity << " su \"" << itemName << "\"." << itp <<" Rimanenti "<< std::endl;
+            if (itp == 0) {
                 Item removedItem = *it;
                 items.erase(it);
                 notifyObservers("Removed", removedItem);
@@ -211,7 +213,7 @@ void ShoppingList::buyItem(const std::string& username, const std::string& itemN
 void ShoppingList::showRemainingQuantities() const {
     std::cout << "Quantita' di ogni elemento nella lista \"" << name << "\":" << std::endl;
     for (const auto& item : items) {
-        std::cout << "- " << item.name << ": " << item.quantity << " rimanenti" << std::endl;
+        std::cout << "- " << item.getName() << ": " << item.getQuantity() << " rimanenti" << std::endl;
     }
     if (items.empty()) {
         std::cout << "La lista e' vuota" << std::endl;

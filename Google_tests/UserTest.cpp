@@ -20,9 +20,9 @@ TEST_F(UserTest, CreazioneLista) {
 
 
 TEST_F(UserTest, AggiornaItem) {
-    User alice("Alice");
-    alice.createList("Alimentari");
+    User user("Pippo");
+    user.createList("Alimentari");
 
-    alice.addItemToList("Alimentari", Item("Latte", "Latticini", 2, false));
-    EXPECT_NO_THROW(alice.updateItemInList("Alimentari", Item("Latte", "Latticini", 5, false)));
+    user.addItemToList("Alimentari", Item("Latte", "Latticini", 2, false));
+    EXPECT_NO_THROW(user.updateItemInList("Alimentari", Item("Latte", "Latticini", 5, false)));
 }

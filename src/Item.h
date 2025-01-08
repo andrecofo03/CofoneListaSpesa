@@ -5,8 +5,6 @@
 #include <string>
 
 class Item {
-    friend class ShoppingList;
-
     std::string name;
     std::string category;
     int quantity;
@@ -16,11 +14,12 @@ public:
     Item(const std::string &name, const std::string &category, int quantity, bool bought);
     void print() const;
 
+    std::string getName() const;
+    std::string getCategory() const;
     int getQuantity() const;
-    int getBought() const;
     bool isBought() const;
 
-
+    void setBought(bool bought);
 };
 
 

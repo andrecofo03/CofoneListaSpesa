@@ -21,9 +21,26 @@ void Item::print() const {
     std::cout << std::endl;
 }
 
+std::string Item::getName() const {
+    return name;
+}
+
+std::string Item::getCategory() const {
+    return category;
+}
+
+int Item::getQuantity() const {
+    return quantity;
+}
 
 bool Item::isBought() const {
     return bought;
 }
+
+
+void Item::setBought(bool bought) {
+    this->bought = bought;
+}
+
 
 
